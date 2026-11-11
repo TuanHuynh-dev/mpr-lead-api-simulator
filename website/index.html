@@ -56,6 +56,8 @@
 
     input[type="text"],
     input[type="email"],
+    input[type="number"],
+    textarea,
     select {
       width: 100%;
       padding: 10px;
@@ -200,38 +202,190 @@
 
         <input type="hidden" id="dataField-captureChannel" name="CaptureChannel" value="Website">
 
+        <label for="dataField-customerType">Loại khách hàng</label>
+        <select id="dataField-customerType" name="customerType">
+          <option value="">-- Chọn --</option>
+          <option value="None Specified">None Specified</option>
+          <option value="Personal">Cá nhân (Personal)</option>
+          <option value="Business">Doanh nghiệp (Business)</option>
+        </select>
+
         <label for="dataField-lastname">Họ <span style="color:#731620">*</span></label>
         <input type="text" placeholder="Vui lòng nhập họ" id="dataField-lastname" name="LastName" required>
 
-        <label for="dataField-firstname">Tên <span style="color:#731620">*</span></label>
-        <input type="text" placeholder="Vui lòng nhập tên" id="dataField-firstname" name="FirstName" required>
+        <label for="dataField-firstname">Tên</label>
+        <input type="text" placeholder="Vui lòng nhập tên" id="dataField-firstname" name="FirstName">
 
         <label for="dataField-phone">Số điện thoại <span style="color:#731620">*</span></label>
         <input type="text" placeholder="Vui lòng nhập số điện thoại" id="dataField-phone" name="Phone"
           pattern="[0-9]{10}" required>
 
+        <label for="dataField-zaloNumber">Số Zalo</label>
+        <input type="text" placeholder="Vui lòng nhập số Zalo" id="dataField-zaloNumber" name="zaloNumber">
+
         <label for="dataField-email">Email</label>
         <input type="email" placeholder="Vui lòng nhập email" id="dataField-email" name="Email">
+
+        <label for="dataField-vneId">VNeID (khách cá nhân)</label>
+        <input type="text" placeholder="Vui lòng nhập VNeID" id="dataField-vneId" name="vneId">
+
+        <label for="dataField-organizationNumber">Mã số thuế (khách doanh nghiệp)</label>
+        <input type="text" placeholder="Vui lòng nhập mã số thuế" id="dataField-organizationNumber" name="organizationNumber">
 
         <label for="dataField-company">Công ty</label>
         <input type="text" placeholder="Vui lòng nhập tên công ty" id="dataField-company" name="Company">
 
+        <label for="dataField-industry">Ngành nghề</label>
+        <select id="dataField-industry" name="industry">
+          <option value="">-- Chọn --</option>
+          <option value="Agriculture">Agriculture</option>
+          <option value="Apparel">Apparel</option>
+          <option value="Banking">Banking</option>
+          <option value="Biotechnology">Biotechnology</option>
+          <option value="Chemicals">Chemicals</option>
+          <option value="Communications">Communications</option>
+          <option value="Construction">Construction</option>
+          <option value="Consulting">Consulting</option>
+          <option value="Education">Education</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Energy">Energy</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Environmental">Environmental</option>
+          <option value="Finance">Finance</option>
+          <option value="Food &amp; Beverage">Food &amp; Beverage</option>
+          <option value="Government">Government</option>
+          <option value="Healthcare">Healthcare</option>
+          <option value="Hospitality">Hospitality</option>
+          <option value="Insurance">Insurance</option>
+          <option value="Machinery">Machinery</option>
+          <option value="Manufacturing">Manufacturing</option>
+          <option value="Media">Media</option>
+          <option value="Not For Profit">Not For Profit</option>
+          <option value="Other">Other</option>
+          <option value="Recreation">Recreation</option>
+          <option value="Retail">Retail</option>
+          <option value="Shipping">Shipping</option>
+          <option value="Technology">Technology</option>
+          <option value="Telecommunications">Telecommunications</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Utilities">Utilities</option>
+          <option value="Logistics">Logistics</option>
+          <option value="E-commerce">E-commerce</option>
+          <option value="Algriculture">Algriculture</option>
+          <option value="Driving school">Driving school</option>
+          <option value="Part Shop">Part Shop</option>
+          <option value="Garage">Garage</option>
+        </select>
+
+        <label for="dataField-website">Website</label>
+        <input type="text" placeholder="Vui lòng nhập website" id="dataField-website" name="website">
+
+        <label for="dataField-rating">Mức độ quan tâm</label>
+        <select id="dataField-rating" name="rating">
+          <option value="">-- Chọn --</option>
+          <option value="Hot">Hot</option>
+          <option value="Warm">Warm</option>
+          <option value="Cold">Cold</option>
+          <option value="Lead Unqualified">Lead Unqualified</option>
+        </select>
+
+        <label for="dataField-numberOfVehicle">Số xe đang sở hữu</label>
+        <input type="number" min="0" step="1" placeholder="Vui lòng nhập số xe đang sở hữu" id="dataField-numberOfVehicle" name="numberOfVehicle">
+
+        <label for="dataField-expectedQuantity">Số lượng xe dự kiến mua</label>
+        <input type="number" min="0" step="1" placeholder="Vui lòng nhập số lượng dự kiến" id="dataField-expectedQuantity" name="expectedQuantity">
+
+        <label for="dataField-country">Quốc gia</label>
+        <select id="dataField-country" name="country">
+          <option value="">-- Chọn Quốc gia --</option>
+          <option value="RoC0001">Việt Nam</option>
+        </select>
+
         <label for="dataField-province">Tỉnh/Thành phố <span style="color:#731620">*</span></label>
         <select id="dataField-province" name="province" required>
           <option value="">-- Chọn Tỉnh --</option>
-          <option value="HCM">Hồ Chí Minh</option>
-          <option value="HN">Hà Nội</option>
+          <option value="92">THÀNH PHỐ CẦN THƠ</option>
+          <option value="48">THÀNH PHỐ ĐÀ NẴNG</option>
+          <option value="1">THÀNH PHỐ HÀ NỘI</option>
+          <option value="31">THÀNH PHỐ HẢI PHÒNG</option>
+          <option value="79">THÀNH PHỐ HỒ CHÍ MINH</option>
+          <option value="46">THÀNH PHỐ HUẾ</option>
+          <option value="91">TỈNH AN GIANG</option>
+          <option value="24">TỈNH BẮC NINH</option>
+          <option value="96">TỈNH CÀ MAU</option>
+          <option value="4">TỈNH CAO BẰNG</option>
+          <option value="66">TỈNH ĐẮK LẮK</option>
+          <option value="11">TỈNH ĐIỆN BIÊN</option>
+          <option value="75">TỈNH ĐỒNG NAI</option>
+          <option value="82">TỈNH ĐỒNG THÁP</option>
+          <option value="52">TỈNH GIA LAI</option>
+          <option value="42">TỈNH HÀ TĨNH</option>
+          <option value="33">TỈNH HƯNG YÊN</option>
+          <option value="56">TỈNH KHÁNH HÒA</option>
+          <option value="12">TỈNH LAI CHÂU</option>
+          <option value="20">TỈNH LẠNG SƠN</option>
+          <option value="15">TỈNH LÀO CAI</option>
+          <option value="68">TỈNH LÂM ĐỒNG</option>
+          <option value="40">TỈNH NGHỆ AN</option>
+          <option value="37">TỈNH NINH BÌNH</option>
+          <option value="25">TỈNH PHÚ THỌ</option>
+          <option value="51">TỈNH QUẢNG NGÃI</option>
+          <option value="22">TỈNH QUẢNG NINH</option>
+          <option value="44">TỈNH QUẢNG TRỊ</option>
+          <option value="14">TỈNH SƠN LA</option>
+          <option value="80">TỈNH TÂY NINH</option>
+          <option value="19">TỈNH THÁI NGUYÊN</option>
+          <option value="38">TỈNH THANH HÓA</option>
+          <option value="8">TỈNH TUYÊN QUANG</option>
+          <option value="86">TỈNH VĨNH LONG</option>
         </select>
 
-        <label for="dataField_interestedVehicle">Mẫu xe <span style="color:#731620">*</span></label>
+        <label for="dataField-accountNumber">Đại lý</label>
+        <select id="dataField-accountNumber" name="accountNumber">
+          <option value="">-- Chọn Đại lý --</option>
+          <option value="C0023">CN TỔNG CTY CK GTVT SÀI GÒN - TNHH MTV - XN DV Ô TÔ ISUZU AN LẠC</option>
+          <option value="C0013">CN TỔNG CTY CƠ KHÍ GTVT SÀI GÒN - TNHH MTV - XN DV Ô TÔ ISUZU AN LẠC</option>
+          <option value="C0033">CN TỔNG CTY CƠ KHÍ GTVT SÀI GÒN-TNHH MTV - XN CƠ KHÍ ÔTÔ AN LẠC</option>
+          <option value="C0017">CÔNG TY CỔ PHẦN AN KHÁNH</option>
+          <option value="C0003">CÔNG TY CỔ PHẦN Ô TÔ KCV THĂNG LONG</option>
+          <option value="C0012">CÔNG TY CỔ PHẦN THƯƠNG MẠI GREEN KA</option>
+          <option value="C0005">CÔNG TY CỔ PHẦN THƯƠNG MẠI Ô TÔ THIÊN HÒA AN</option>
+          <option value="C0011">CÔNG TY CỔ PHẦN VÂN NAM</option>
+          <option value="C0002">CÔNG TY CỔ PHẦN VẬN TẢI THƯƠNG MẠI VÀ ĐẦU TƯ AN VIỆT</option>
+          <option value="C0021">CÔNG TY CP ĐẦU TƯ BNN</option>
+          <option value="C0009">CÔNG TY CP Ô TÔ ĐẠI THỊNH</option>
+          <option value="C0016">CÔNG TY CP Ô TÔ TÂY BẮC SÀI GÒN</option>
+          <option value="C0006">CÔNG TY TNHH DỊCH VỤ THƯƠNG MẠI TỔNG HỢP HÙNG PHƯỢNG</option>
+          <option value="C0014">CÔNG TY TNHH DV-TM Ô TÔ ĐẠT TẤN PHÁT</option>
+          <option value="C0034">CÔNG TY TNHH ĐẦU TƯ MINH NHI</option>
+          <option value="C0001">CÔNG TY TNHH KINH DOANH ÔTÔ NISU</option>
+          <option value="C0015">CÔNG TY TNHH Ô TÔ BẮC QUANG</option>
+          <option value="C0022">CÔNG TY TNHH Ô TÔ LỘC TẤN PHÁT</option>
+          <option value="C0019">CÔNG TY TNHH Ô TÔ THANH THẢO</option>
+          <option value="C0010">CÔNG TY TNHH Ô TÔ VIỆT HẢI NHA TRANG</option>
+          <option value="C0020">CÔNG TY TNHH ÔTÔ VIỆT HẢI</option>
+          <option value="C0174">CÔNG TY TNHH ÔTÔ VIỆT NHẬT – CHI NHÁNH VIỆT NHẬT LÂM ĐỒNG</option>
+          <option value="C0007">CÔNG TY TNHH SẢN XUẤT- THƯƠNG MẠI VÀ DỊCH VỤ HỒNG AN</option>
+          <option value="C0004">CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ Ô TÔ VIỆT PHÁT</option>
+          <option value="C0018">CÔNG TY TNHH TM DV ISUZU CẨM PHONG</option>
+          <option value="C0008">CÔNG TY TNHH TRUNG SƠN</option>
+          <option value="C0024">CTY TNHH MTV TM &amp; DV Ô TÔ ISUZU NAM BÌNH CÀ MAU</option>
+          <option value="C0101">TỔNG CÔNG TY CƠ KHÍ GTVT SÀI GÒN (SAMCO)</option>
+        </select>
+
+        <label for="dataField_interestedVehicle">Mẫu xe</label>
         <select id="dataField_interestedVehicle" name="interestedVehicle">
-          <option value="">None</option>
+          <option value="">-- Chọn --</option>
           <option value="DMAX">D-MAX</option>
           <option value="MuX">MU-X</option>
           <option value="QLRFE4">Q-Series</option>
           <option value="NPRKE4A">F-Series</option>
           <option value="NQRLE4A">Tractor Head</option>
         </select>
+
+        <label for="dataField-note">Ghi chú / yêu cầu tư vấn</label>
+        <textarea id="dataField-note" name="note" rows="3" placeholder="Vui lòng nhập ghi chú"></textarea>
 
         <input type="hidden" id="lead_source" name="lead_source" value="Networking">
 
@@ -260,15 +414,8 @@
         const originalLabels = $submitBtns.map(function () { return $(this).is('input') ? this.value : $(this).text(); }).get();
         $submitBtns.prop('disabled', true).each(function () { if ($(this).is('input')) { this.value = 'Đang gửi...'; } else { $(this).text('Đang gửi...'); } });
 
-        let dataField_lastname = $('#dataField-lastname').val();
-        let dataField_firstname = $('#dataField-firstname').val();
-        let dataField_email = $('#dataField-email').val();
-        let dataField_phone = $('#dataField-phone').val();
-        let dataField_interestedVehicle = $('#dataField_interestedVehicle').val();
-
-        // Lấy dữ liệu 2 trường mới
-        let dataField_company = $('#dataField-company').val();
-        let dataField_province = $('#dataField-province').val();
+        const val = function (id) { return ($(id).val() || '').trim(); };
+        const num = function (id) { const v = val(id); return v === '' ? null : Number(v); };
         var settings = {
           url: "https://ivcl--partial.sandbox.my.salesforce-sites.com/api/services/apexrest/APILeadIVCWebsite",
           method: "POST",
@@ -277,14 +424,25 @@
             "Content-Type": "application/json" // Chỉnh lại thành application/json cho chuẩn xác
           },
           data: JSON.stringify({
-            lastname: dataField_lastname,
-            firstname: dataField_firstname,
-            phone: dataField_phone,
-            email: dataField_email,
-            interestedVehicle: dataField_interestedVehicle,
-            // Thêm data để push về Apex
-            company: dataField_company,
-            province: dataField_province
+            lastName: val('#dataField-lastname'),
+            firstName: val('#dataField-firstname'),
+            phone: val('#dataField-phone'),
+            email: val('#dataField-email'),
+            zaloNumber: val('#dataField-zaloNumber'),
+            customerType: val('#dataField-customerType'),
+            rating: val('#dataField-rating'),
+            company: val('#dataField-company'),
+            industry: val('#dataField-industry'),
+            website: val('#dataField-website'),
+            numberOfVehicle: num('#dataField-numberOfVehicle'),
+            interestedVehicle: val('#dataField_interestedVehicle'),
+            expectedQuantity: num('#dataField-expectedQuantity'),
+            province: val('#dataField-province'),
+            country: val('#dataField-country'),
+            accountNumber: val('#dataField-accountNumber'),
+            note: val('#dataField-note'),
+            vneId: val('#dataField-vneId'),
+            organizationNumber: val('#dataField-organizationNumber')
           })
         };
 
