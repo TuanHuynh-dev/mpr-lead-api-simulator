@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Lái Thử - ISUZU</title>
+    <style>
+        :root {
+            --isuzu-red: #ed1c24;
+            --bg-blue: #eef3ff;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+            padding: 30px;
+        }
+
+        .header-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 30px;
+            width: auto;
+        }
+
+        h1 {
+            color: var(--isuzu-red);
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 24px;
+            flex-grow: 1;
+            margin: 0;
+        }
+
+        .section-title {
+            color: var(--isuzu-red);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 25px 0 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* Chọn xe */
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .vehicle-item {
+            border: 1px solid var(--border);
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .vehicle-item:hover {
+            border-color: var(--isuzu-red);
+        }
+
+        .vehicle-item img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .vehicle-item label {
+            display: block;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Form */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        label span {
+            color: var(--isuzu-red);
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .bg-blue {
+            background-color: var(--bg-blue);
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--isuzu-red);
+        }
+
+        /* Checkbox & Button */
+        .terms {
+            font-size: 13px;
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .terms-intro {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .terms-intro input[type="checkbox"] {
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .terms-intro-text {
+            flex: 1;
+        }
+
+        .terms-intro-text p {
+            margin: 0 0 10px 0;
+        }
+
+        .terms-intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .check-item input[type="checkbox"] {
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .check-item span {
+            font-size: 13px;
+        }
+
+        .notice {
+            color: #666;
+            font-size: 12px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .disclaimer {
+            color: #d9534f;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .btn-submit {
+            background: var(--isuzu-red);
+            color: #fff;
+            border: none;
+            padding: 15px 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: block;
+            margin: 20px 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+
+            .form-row,
+            .vehicle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            h1 {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header-wrapper">
+            <div class="logo">
+                <img src="./public/logo.jpg" alt="ISUZU Logo">
+            </div>
+            <h1>Đăng Ký Lái Thử</h1>
+        </div>
+
+        <form id="testDriveForm" name="testDriveForm">
+            <div class="section-title">Chọn xe của bạn</div>
+            <div class="vehicle-grid">
+                <div class="vehicle-item">
+                    <img src="./public/d-max.jpg" alt="D-MAX">
+                    <label><input type="radio" name="car" value="DMAX" checked> ISUZU D-MAX</label>
+                </div>
+                <div class="vehicle-item">
+                    <img src="./public/mu-x.jpg" alt="mu-X">
+                    <label><input type="radio" name="car" value="MuX"> ISUZU mu-X</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Chọn mẫu xe cụ thể</label>
+                <select name="carModel">
+                    <option value="">TÔI VẪN CHƯA QUYẾT ĐỊNH</option>
+                    <option value="DMAX">ISUZU D-MAX TYPE Z (4x4 AT)</option>MuX
+                    <option value="MuX">ISUZU mu-X PREMIUM (4x4 AT)</option>
+                </select>
+            </div>
+
+            <div class="section-title">Thông tin của bạn</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Họ <span>*</span></label>
+                    <input type="text" name="lastName" class="bg-blue" placeholder="Nhập họ" required>
+                </div>
+                <div class="form-group">
+                    <label>Tên <span>*</span></label>
+                    <input type="text" name="firstName" class="bg-blue" placeholder="Nhập tên" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Số điện thoại <span>*</span></label>
+                    <input type="tel" name="phone" placeholder="090xxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="example@gmail.com">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tỉnh/Thành phố <span>*</span></label>
+                    <select name="province" required>
+                        <option value="">-- Chọn Tỉnh --</option>
+                        <option value="HCM">Hồ Chí Minh</option>
+                        <option value="HN">Hà Nội</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Đại lý lái thử <span>*</span></label>
+                    <select name="dealership" required>
+                        <option value="">-- Chọn Đại lý --</option>
+                        <option value="ISUZU_ANLAC">ISUZU AN LẠC</option>
+                        <option value="ISUZU_ANVIET">ISUZU An Việt</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ghi chú</label>
+                <textarea name="notes" rows="3" placeholder="Nhập thêm yêu cầu nếu có"></textarea>
+            </div>
+
+            <div class="terms">
+                <div class="terms-intro">
+                    <input type="checkbox" name="agreeFollow" checked>
+                    <div class="terms-intro-text">
+                        <p><strong>Bạn đồng ý theo dõi ISUZU VietNam</strong></p>
+                        <p style="margin-left: -30px; font-size: 12px; color: #666;">Chúng tôi muốn cung cấp cho bạn
+                            trải nghiệm người dùng tốt hơn và hiển thị cho bạn các sản phẩm và dịch vụ mà bạn có thể
+                            quan tâm.</p>
+                    </div>
+                </div>
+
+                <p style="margin: 10px 0; font-size: 12px; color: #666;">Để đạt được điều này, chúng tôi cần thu thập
+                    một số thông tin về bạn và hoạt động của bạn trên nền tảng/ứng dụng Isuzu Việt Nam, chúng tôi sẽ
+                    thực hiện theo Quy định bảo vệ dữ liệu cá nhân theo luật pháp Việt Nam. Chúng tôi sẽ không thu thập
+                    cũng như không sử dụng dữ liệu của bạn cho bất kỳ mục đích nào trừ khi bạn đồng ý.</p>
+
+                <p style="margin: 10px 0; font-size: 12px; color: #666;">Bạn có thể lựa chọn theo tùy chọn bên dưới.
+                    Chúng tôi muốn thu thập dữ liệu của bạn và sử dụng nó cho các hoạt động sau:</p>
+
+                <div class="check-item">
+                    <input type="checkbox" name="agreeService">
+                    <span><strong>Cung cấp sản phẩm, dịch vụ và chăm sóc khách hàng</strong></span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" name="agreeMarketing">
+                    <span><strong>Tiếp thị</strong></span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" name="agreeOperation">
+                    <span><strong>Phục vụ hoạt động của Công ty TNHH Ô Tô Isuzu Việt Nam</strong></span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" name="agreeThirdParty">
+                    <span><strong>Chuyển thông tin cho bên thứ ba</strong></span>
+                </div>
+
+                <div class="check-item" style="margin-top: 20px;">
+                    <input type="checkbox" name="agreePolicy" checked>
+                    <span><strong>Khách hàng đã hiểu rõ và đồng ý với <span style="color: #ed1c24;">Chính sách Bảo
+                                Mật</span> của Isuzu Việt Nam</strong></span>
+                </div>
+
+                <p class="disclaimer">*Chỉ vui lòng mang theo bằng lái xe ô tô Isuzu Việt Nam khi đến tham gia
+                    lái thử.</p>
+            </div>
+
+            <div id="form-message"
+                style="display: none; padding: 15px; margin: 15px 0; border-radius: 5px; font-size: 14px; text-align: center;">
+            </div>
+
+            <button type="submit" class="btn-submit">Gửi thông tin</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("testDriveForm");
+            const messageBox = document.getElementById("form-message");
+            const submitBtn = form.querySelector(".btn-submit");
+
+            // Biến cờ (flag) để chống người dùng double-click gây trùng data
+            let isSubmitting = false;
+
+            // Hàm hiển thị thông báo
+            function showMessage(msg, isSuccess) {
+                messageBox.style.display = "block";
+                messageBox.innerText = msg;
+                if (isSuccess) {
+                    messageBox.style.backgroundColor = "#d4edda";
+                    messageBox.style.color = "#155724";
+                    messageBox.style.border = "1px solid #c3e6cb";
+                } else {
+                    messageBox.style.backgroundColor = "#f8d7da";
+                    messageBox.style.color = "#721c24";
+                    messageBox.style.border = "1px solid #f5c6cb";
+                }
+            }
+
+            form.addEventListener("submit", async function (e) {
+                e.preventDefault(); // Ngăn form load lại trang
+
+                // Nếu form đang trong quá trình submit (cờ = true) thì chặn luôn, không cho chạy tiếp
+                if (isSubmitting) return;
+
+                // Khóa cửa: đánh dấu là đang xử lý
+                isSubmitting = true;
+
+                // Đổi trạng thái nút bấm
+                const originalBtnText = submitBtn.innerText;
+                submitBtn.innerText = "ĐANG XỬ LÝ...";
+                submitBtn.disabled = true;
+                messageBox.style.display = "none"; // Ẩn thông báo cũ (nếu có)
+
+                // Lấy dữ liệu từ form
+                const formData = new FormData(form);
+
+                // Map dữ liệu từ Form HTML sang Object JSON giống cấu trúc Apex class customTestDrive
+                const payload = {
+                    carModel: formData.get("carModel"), //carModel // Lấy giá trị của thẻ input radio đang checked (DMAX hoặc MuX)
+                    firstName: formData.get("firstName"),
+                    lastName: formData.get("lastName"),
+                    gender: "", // Tạm để trống do HTML chưa có trường này
+                    email: formData.get("email"),
+                    phone: formData.get("phone"),
+                    province: formData.get("province"),
+                    country: "VN", // Gán cứng là VN hoặc thêm select trên form nếu cần
+                    company: "",
+                    ownedCarModel: formData.get("car"), // Lấy giá trị từ thẻ select mẫu xe chi tiết (nếu có)
+                    dealerCode: formData.get("dealership"), // Map từ select dealership sang dealerCode
+                    note: formData.get("notes"), // Map từ thẻ textarea notes sang note
+                    requestDate: new Date().toISOString() // Truyền ngày giờ hiện tại
+                };
+
+                console.log('data: ' + JSON.stringify(payload));
+
+                try {
+                    // Gọi API Salesforce
+                    const response = await fetch("https://ivcl--partial.sandbox.my.salesforce-sites.com/api/services/apexrest/APINewTestDrive", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    console.log('Payload data gửi đi: ', JSON.stringify(payload));
+
+                    // Parse kết quả trả về
+                    const result = await response.json();
+
+                    // Kiểm tra mã Code do Apex trả về
+                    if (result.Code === 200) {
+                        showMessage("Đăng ký lái thử thành công! Chúng tôi sẽ sớm liên hệ với bạn.", true);
+                        form.reset(); // Xóa trắng form sau khi thành công
+                    } else {
+                        showMessage("Đăng ký thất bại: " + result.Message, false);
+                    }
+
+                } catch (error) {
+                    console.error("API Error:", error);
+                    showMessage("Lỗi kết nối mạng hoặc máy chủ. Vui lòng thử lại sau!", false);
+                } finally {
+                    // Phục hồi lại nút bấm
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+
+                    // Mở khóa cửa: đánh dấu đã xử lý xong để cho phép submit lần tiếp theo (nếu người dùng điền form mới)
+                    isSubmitting = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

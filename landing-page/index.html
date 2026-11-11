@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Mua Xe - Isuzu Quang Trung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --isuzu-red: #ed1c24;
+            --isuzu-dark: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2070') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-panel {
+            background: var(--isuzu-dark);
+            color: var(--white);
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 5px solid var(--isuzu-red);
+        }
+
+        .info-panel h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .info-panel h1 span {
+            color: var(--isuzu-red);
+        }
+
+        .form-container {
+            flex: 1.2;
+            padding: 40px;
+            position: relative;
+        }
+
+        h2 {
+            color: var(--isuzu-dark);
+            margin-bottom: 25px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--isuzu-red);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--isuzu-red);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--isuzu-red);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #c41212;
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
+            min-height: 20px;
+            /* Giữ chỗ để layout không bị nhảy */
+        }
+
+        .success {
+            color: #28a745;
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            background: #e8f5e9;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            background: #fbe9e7;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="info-panel">
+            <h1>ISUZU <span>QUANG TRUNG</span></h1>
+            <p>Đăng ký ngay để nhận báo giá lăn bánh và lái thử miễn phí năm 2026.</p>
+            <div style="font-size: 13px; border-top: 1px solid #444; padding-top: 20px; margin-top: 20px;">
+                <p>📍 Quang Trung, Gò Vấp, TP.HCM</p>
+                <p>📞 Hotline: 1900 xxxx</p>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>NHẬN ƯU ĐÃI</h2>
+            <form id="leadForm">
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Họ *</label>
+                        <input type="text" id="lastName" placeholder="Nguyễn" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Tên *</label>
+                        <input type="text" id="firstName" placeholder="Văn A" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại *</label>
+                    <input type="tel" id="phone" placeholder="090x xxx xxx" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tỉnh/Thành phố *</label>
+                    <select id="province" required>
+                        <option value="">-- Chọn Tỉnh --</option>
+                        <option value="HCM">Hồ Chí Minh</option>
+                        <option value="HN">Hà Nội</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Đại lý lái thử *</label>
+                    <select id="dealership" required>
+                        <option value="">-- Chọn Đại lý --</option>
+                        <option value="ISUZU_ANLAC">ISUZU AN LẠC</option>
+                        <option value="ISUZU_ANVIET">ISUZU An Việt</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Chọn mẫu xe cụ thể</label>
+                    <select id="carModel">
+                        <option value="">TÔI VẪN CHƯA QUYẾT ĐỊNH</option>
+                        <option value="DMAX">ISUZU D-MAX TYPE Z (4x4 AT)</option>
+                        <option value="MuX">ISUZU mu-X PREMIUM (4x4 AT)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="example@gmail.com">
+                </div>
+
+                <input type="hidden" id="utm_campaign" value="N/A">
+                <input type="hidden" id="utm_source" value="N/A">
+                <input type="hidden" id="utm_medium" value="N/A">
+
+                <button type="submit" class="submit-btn" id="submitBtn">Đăng Ký Ngay</button>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <script>
+        // Lấy tham số UTM từ URL
+        function getUTMParams() {
+            const params = new URLSearchParams(window.location.search);
+            const utmFields = ['utm_campaign', 'utm_source', 'utm_medium'];
+            utmFields.forEach(field => {
+                const value = params.get(field);
+                if (value) document.getElementById(field).value = value;
+            });
+        }
+
+        window.onload = getUTMParams;
+
+        document.getElementById('leadForm').addEventListener('input', function () {
+            // Khi người dùng gõ bất cứ thứ gì, xóa thông báo thành công đi
+            document.getElementById('message').innerHTML = "";
+        });
+
+        document.getElementById('leadForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('submitBtn');
+            const msgDiv = document.getElementById('message');
+            const form = document.getElementById('leadForm');
+
+            btn.disabled = true;
+            btn.innerText = "Đang xử lý...";
+            msgDiv.innerHTML = ""; // Xóa thông báo cũ nếu có
+
+            const formData = {
+                lastname: document.getElementById('lastName').value,
+                firstname: document.getElementById('firstName').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                province: document.getElementById('province').value,
+                dealerCode: document.getElementById('dealership').value,
+                carModel: document.getElementById('carModel').value,
+                utmCampaign: document.getElementById('utm_campaign').value,
+                utmSource: document.getElementById('utm_source').value,
+                utmMedium: document.getElementById('utm_medium').value
+            };
+
+            const salesforceEndpoint = 'https://ivcl--partial.sandbox.my.salesforce-sites.com/api/services/apexrest/APILeadLandingpage';
+
+            fetch(salesforceEndpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && (data.Code === 200 || data.status === 'success')) {
+                        // 1. Hiển thị thông báo thành công
+                        msgDiv.innerHTML = "<span class='success'>✓ Đăng ký thành công!</span>";
+
+                        // 2. Reset dữ liệu trong form ngay lập tức
+                        form.reset();
+
+                        // 3. Sau 4 giây, xóa thông báo thành công cho sạch giao diện
+                    } else {
+                        msgDiv.innerHTML = "<span class='error'>Lỗi: " + (data.Message || "Thử lại sau") + "</span>";
+                    }
+                })
+                .catch(error => {
+                    msgDiv.innerHTML = "<span class='error'>Lỗi kết nối mạng. Vui lòng thử lại.</span>";
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.innerText = "Đăng Ký Ngay";
+
+                });
+        });
+    </script>
+</body>
+
+</html>
