@@ -1,0 +1,9 @@
+# Salesforce / VS Code local cache
+.sfdx/
+.sf/
+.vscode/
+node_modules/
+.DS_Store
+Thumbs.db
+.env
+.env.*

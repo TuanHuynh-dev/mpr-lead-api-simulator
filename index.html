@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông tin</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .form-wrapper {
+      background: rgba(30, 30, 30, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 12px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .form-wrapper h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 22px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin: 10px 0 5px;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      color: #000;
+    }
+
+    .dob-container {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dob-container select {
+      flex: 1;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #2c80b4;
+    }
+
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .popup-content {
+      color: #fff;
+      padding: 30px 40px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      font-size: 18px;
+      max-width: 400px;
+      animation: popupShow 0.4s ease-out;
+    }
+
+    .popup-content.success {
+      background: linear-gradient(135deg, #00b09b, #96c93d);
+      margin: auto;
+    }
+
+    .popup-content.error {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      margin: auto;
+    }
+
+    .popup-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @keyframes popupShow {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #ccc;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-wrapper">
+      <form id="lead-form">
+        <h1>Đăng ký lái thử</h1>
+        <input type="hidden" id="dataField-campaign" name="Campaign_ID" value="701F6000000KuRuIAK">
+        <input type="hidden" id="dataField-member_status" name="member_status" value="New" />
+
+        <input type="hidden" id="dataField-captureChannel" name="CaptureChannel" value="Website">
+
+        <label for="dataField-lastname">Họ <span style="color:#731620">*</span></label>
+        <input type="text" placeholder="Vui lòng nhập họ" id="dataField-lastname" name="LastName" required>
+
+        <label for="dataField-firstname">Tên <span style="color:#731620">*</span></label>
+        <input type="text" placeholder="Vui lòng nhập tên" id="dataField-firstname" name="FirstName" required>
+
+        <label for="dataField-phone">Số điện thoại <span style="color:#731620">*</span></label>
+        <input type="text" placeholder="Vui lòng nhập số điện thoại" id="dataField-phone" name="Phone"
+          pattern="[0-9]{10}" required>
+
+        <label for="dataField-email">Email</label>
+        <input type="email" placeholder="Vui lòng nhập email" id="dataField-email" name="Email">
+
+        <label for="dataField-company">Công ty</label>
+        <input type="text" placeholder="Vui lòng nhập tên công ty" id="dataField-company" name="Company">
+
+        <label for="dataField-province">Tỉnh/Thành phố <span style="color:#731620">*</span></label>
+        <select id="dataField-province" name="province" required>
+          <option value="">-- Chọn Tỉnh --</option>
+          <option value="HCM">Hồ Chí Minh</option>
+          <option value="HN">Hà Nội</option>
+        </select>
+
+        <label for="dataField_interestedVehicle">Mẫu xe <span style="color:#731620">*</span></label>
+        <select id="dataField_interestedVehicle" name="interestedVehicle">
+          <option value="">None</option>
+          <option value="DMAX">D-MAX</option>
+          <option value="MuX">MU-X</option>
+          <option value="QLRFE4">Q-Series</option>
+          <option value="NPRKE4A">F-Series</option>
+          <option value="NQRLE4A">Tractor Head</option>
+        </select>
+
+        <input type="hidden" id="lead_source" name="lead_source" value="Networking">
+
+        <button type="submit" class="submit-btn">Gửi</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup-container" id="popup">
+    <div class="popup-content" id="popupContent">
+      <span class="close-button" id="closePopup">&times;</span>
+      <div class="popup-icon" id="popupIcon">✅</div>
+      <p id="popup-message">Bạn đã đăng ký thành công.</p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#lead-form').submit(function (event) {
+        event.preventDefault();
+
+        let dataField_lastname = $('#dataField-lastname').val();
+        let dataField_firstname = $('#dataField-firstname').val();
+        let dataField_email = $('#dataField-email').val();
+        let dataField_phone = $('#dataField-phone').val();
+        let dataField_interestedVehicle = $('#dataField_interestedVehicle').val();
+
+        // Lấy dữ liệu 2 trường mới
+        let dataField_company = $('#dataField-company').val();
+        let dataField_province = $('#dataField-province').val();
+        var settings = {
+          url: "https://ivc--qa.sandbox.my.salesforce-sites.com/api/services/apexrest/APILeadIVCWebsite",
+          method: "POST",
+          timeout: 0,
+          headers: {
+            "Content-Type": "application/json" // Chỉnh lại thành application/json cho chuẩn xác
+          },
+          data: JSON.stringify({
+            lastname: dataField_lastname,
+            firstname: dataField_firstname,
+            phone: dataField_phone,
+            email: dataField_email,
+            interestedVehicle: dataField_interestedVehicle,
+            // Thêm data để push về Apex
+            company: dataField_company,
+            province: dataField_province
+          })
+        };
+
+        $.ajax(settings).done(function (response) {
+          $('#loadingOverlay').fadeOut();
+          console.log(response);
+          if (response.Code != '200') {
+            $('#popupContent').removeClass('success').addClass('error');
+            $('#popupIcon').html('⚠️');
+            $('#popup-message').text("Thông tin đã được ghi nhận, tư vấn viên sẽ sớm liên hệ với bạn!");
+          } else {
+            $('#popupContent').removeClass('error').addClass('success');
+            $('#popupIcon').html('✅');
+            $('#popup-message').text('Đăng ký thành công, tư vấn viên sẽ sớm liên hệ với bạn!');
+          }
+
+          $('#popup').fadeIn();
+          setTimeout(function () {
+            $('#popup').fadeOut();
+            if (response.Code == '200') { // Đổi lại logic check status
+              $('#lead-form')[0].reset();
+            }
+          }, 5000);
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+          $('#loadingOverlay').fadeOut();
+          $('#popupContent').removeClass('success').addClass('error');
+          $('#popupIcon').html('❌');
+          $('#popup-message').text("Không gửi được dữ liệu: " + textStatus);
+          $('#popup').fadeIn();
+        });
+      });
+
+      $('#closePopup').click(function () {
+        $('#popup').fadeOut();
+        $('#lead-form')[0].reset();
+      });
+    });
+  </script>
+</body>
+
+</html>
