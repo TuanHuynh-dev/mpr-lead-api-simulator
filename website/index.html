@@ -91,6 +91,11 @@
       background-color: #2c80b4;
     }
 
+    .submit-btn:disabled {
+      background-color: #95a5a6;
+      cursor: not-allowed;
+    }
+
     .popup-container {
       display: none;
       position: fixed;
@@ -246,8 +251,14 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function () {
+      let isSubmitting = false; // Chống double-click / Enter gửi trùng
       $('#lead-form').submit(function (event) {
         event.preventDefault();
+        if (isSubmitting) return;
+        isSubmitting = true;
+        const $submitBtns = $('#lead-form').find('button[type="submit"], input[type="submit"]');
+        const originalLabels = $submitBtns.map(function () { return $(this).is('input') ? this.value : $(this).text(); }).get();
+        $submitBtns.prop('disabled', true).each(function () { if ($(this).is('input')) { this.value = 'Đang gửi...'; } else { $(this).text('Đang gửi...'); } });
 
         let dataField_lastname = $('#dataField-lastname').val();
         let dataField_firstname = $('#dataField-firstname').val();
@@ -277,7 +288,10 @@
           })
         };
 
-        $.ajax(settings).done(function (response) {
+        $.ajax(settings).always(function () {
+          isSubmitting = false;
+          $submitBtns.prop('disabled', false).each(function (i) { if ($(this).is('input')) { this.value = originalLabels[i]; } else { $(this).text(originalLabels[i]); } });
+        }).done(function (response) {
           $('#loadingOverlay').fadeOut();
           console.log(response);
           if (response.Code != '200') {

@@ -261,15 +261,18 @@
             document.getElementById('message').innerHTML = "";
         });
 
+        let isSubmitting = false; // Chống double-click / Enter gửi trùng
         document.getElementById('leadForm').addEventListener('submit', function (event) {
             event.preventDefault();
+            if (isSubmitting) return;
+            isSubmitting = true;
 
             const btn = document.getElementById('submitBtn');
             const msgDiv = document.getElementById('message');
             const form = document.getElementById('leadForm');
 
             btn.disabled = true;
-            btn.innerText = "Đang xử lý...";
+            btn.innerText = "Đang gửi...";
             msgDiv.innerHTML = ""; // Xóa thông báo cũ nếu có
 
             const formData = {
@@ -312,6 +315,7 @@
                 .finally(() => {
                     btn.disabled = false;
                     btn.innerText = "Đăng Ký Ngay";
+                    isSubmitting = false;
 
                 });
         });
